@@ -3,6 +3,7 @@ ARG PNPM_VERSION="10"
 
 # Install dependencies only when needed
 FROM node:${NODE_IMAGE_VERSION} AS deps
+ARG PNPM_VERSION="10"
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -29,6 +30,7 @@ RUN npm run build-docker
 FROM node:${NODE_IMAGE_VERSION} AS runner
 WORKDIR /app
 
+ARG PNPM_VERSION="10"
 ARG PRISMA_VERSION="7.3.0"
 ARG NODE_OPTIONS
 
