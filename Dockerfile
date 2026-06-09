@@ -41,6 +41,8 @@ RUN set -x \
     && apk add --no-cache curl \
     && npm install -g pnpm
 
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+
 # Script dependencies
 RUN pnpm add -w --allow-build='@prisma/engines' npm-run-all dotenv chalk semver \
     prisma@${PRISMA_VERSION} \
